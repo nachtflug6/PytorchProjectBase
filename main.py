@@ -1,16 +1,12 @@
-# This is a sample Python script.
+import torch
+from tqdm import tqdm
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+print(torch.cuda.is_available())
 
+n = 1000
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+result = torch.zeros((n, n, n), dtype=torch.int64).to('cuda')
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for i in tqdm(range(10)):
+    result += torch.randint_like(result, low=-10, high=11, dtype=torch.int64).to('cuda')
+    print(torch.sum(result))
