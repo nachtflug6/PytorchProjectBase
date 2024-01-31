@@ -1,0 +1,8 @@
+Bootstrap: localimage
+From: /apps/containers/codeserver/codeserver-PyTorch-2.0.0.sif
+
+%files
+    ./requirements.txt
+
+%post
+    /opt/conda/bin/conda install -y --file ./requirements.txt
