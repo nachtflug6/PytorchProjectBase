@@ -1,8 +1,39 @@
-Bootstrap: localimage
-From: /apps/containers/codeserver/codeserver-PyTorch-2.0.0.sif
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:24.01-py3
 
-%files
-    ./requirements.txt
+%environment
+    export DEBIAN_FRONTEND=noninteractive
 
 %post
-    /opt/conda/bin/conda install -y --file ./requirements.txt
+    # Install some basic utilities.
+    apt-get update && apt-get install -y \
+        curl \
+        ca-certificates \
+        sudo \
+        git \
+        bzip2 \
+        libx11-6 \
+        python3-pip \
+        python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+    # Create a working directory.
+    mkdir /app
+    cd /app
+
+    # Install any Python packages you need.
+    %files
+        requirements.txt /app/requirements.txt
+
+    %post
+        python3 -m pip install -r /app/requirements.txt
+
+    # Upgrade pip
+    python3 -m pip install --upgrade pip
+
+    export NVIDIA_VISIBLE_DEVICES=all
+    export NVIDIA_DRIVER_CAPABILITIES=compute,utility
+
+%startscript
+    python3
+
