@@ -14,14 +14,12 @@ This repository serves as a foundational setup for AI projects, enabling seamles
 Ensure you have the following installed on your local machine:
 
 - Docker
-- Apptainer
-- Python 3.7+
 - Git
 
 For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL) to run CUDA virtually. Please refer to the following resources to set up WSL and enable CUDA:
 
-- [NVIDIA CUDA on WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 - [Microsoft WSL Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
+- [NVIDIA CUDA on WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
 
 ## Installation
 
@@ -29,7 +27,7 @@ For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL)
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/ai-project-base.git
+   git clone https://github.com/nachtflug6/PytorchProjectBase.git
    cd ai-project-base
 
 2. **Build the Docker Image**:
@@ -38,7 +36,7 @@ For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL)
 
 3. **Run the Docker Container**:
     ```bash
-    docker run -it --rm -p 8888:8888 -v $(pwd):/workspace ai-project-base:latest
+    docker run -it --rm -p 8888:8888 -v $(pwd):/workspace PytorchProjectBase:latest
 
 4. **Access Jupyter Notebook**:
     Open your browser and navigate to http://localhost:8888 to access the Jupyter Notebook interface.
