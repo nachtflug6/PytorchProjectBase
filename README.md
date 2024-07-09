@@ -28,11 +28,11 @@ For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL)
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/nachtflug6/PytorchProjectBase.git
-   cd ai-project-base
+   cd PytorchProjectBase
 
 2. **Build the Docker Image**:
     ```bash
-    docker build -t ai-project-base:latest -f Dockerfile .
+    docker build -t PytorchProjectBase:latest -f Dockerfile .
 
 3. **Run the Docker Container**:
     ```bash
@@ -51,9 +51,9 @@ For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL)
 
 1. **Build the Apptainer Image**:
     ```bash
-    apptainer build ai-project-base.sif Dockerfile_apptainer.def
+    apptainer build PytorchProjectBase.sif Dockerfile_apptainer.def
 
 2. **Run the Apptainer Container**:
     ```bash
-    apptainer run ai-project-base.sif
+    apptainer run PytorchProjectBase.sif
 
