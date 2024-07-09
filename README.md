@@ -1,6 +1,61 @@
-Base for a pytorch project developed locally using WSL and training on a apptainer cluster
+# AI Project Base
 
-Use this for as guideline WSL and vscode: https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-containers
+This repository serves as a foundational setup for AI projects, enabling seamless local development and deployment to an Apptainer (formerly Singularity) cluster. It includes essential configurations, dependencies, and scripts to streamline your AI development workflow.
 
-Cuda guideline: https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl
+## Features
+
+- **Local Development**: Use Docker to create a consistent development environment.
+- **Cluster Deployment**: Utilize Apptainer for deploying your projects to a high-performance computing (HPC) cluster.
+- **Essential Dependencies**: Pre-configured with common AI/ML libraries and tools.
+- **Easy Setup**: Simplified setup process for both local and cluster environments.
+
+## Prerequisites
+
+Ensure you have the following installed on your local machine:
+
+- Docker
+- Apptainer
+- Python 3.7+
+- Git
+
+For Windows users, it is recommended to set up Windows Subsystem for Linux (WSL) to run CUDA virtually. Please refer to the following resources to set up WSL and enable CUDA:
+
+- [NVIDIA CUDA on WSL](https://docs.nvidia.com/cuda/wsl-user-guide/index.html)
+- [Microsoft WSL Installation Guide](https://docs.microsoft.com/en-us/windows/wsl/install)
+
+## Installation
+
+### Local Development with Docker
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/ai-project-base.git
+   cd ai-project-base
+
+2. **Build the Docker Image**:
+    ```bash
+    docker build -t ai-project-base:latest -f Dockerfile .
+
+3. **Run the Docker Container**:
+    ```bash
+    docker run -it --rm -p 8888:8888 -v $(pwd):/workspace ai-project-base:latest
+
+4. **Access Jupyter Notebook**:
+    Open your browser and navigate to http://localhost:8888 to access the Jupyter Notebook interface.
+
+### Check
+
+1. **Check if CUDA is available and installation successful**:
+    ```bash
+    python main.py
+
+## Cluster Deployment with Apptainer
+
+1. **Build the Apptainer Image**:
+    ```bash
+    apptainer build ai-project-base.sif Dockerfile_apptainer.def
+
+2. **Run the Apptainer Container**:
+    ```bash
+    apptainer run ai-project-base.sif
 
